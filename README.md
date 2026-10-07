@@ -4,10 +4,14 @@ A best-effort mapping of Adobe Photoshop and Adobe Illustrator keyboard shortcut
 
 **Windows** (`.afshort`):
 
-| File | Target studio | Workspaces inside |
-|---|---|---|
-| `affinity_pixel_v3_shortcuts_based_on_photoshop_windows.afshort` | **Pixel Studio** | `PhotoWorkspace.xml` + `PixelWorkspace.xml` (identical, for v2/v3 naming compatibility) + `LiquifyWorkspace.xml` |
-| `affinity_vector_v3_shortcuts_based_on_illustrator_windows.afshort` | **Vector Studio** | `VectorWorkspace.xml` |
+| File | Studios inside |
+|---|---|
+| `affinity_pixel_v3_shortcuts_based_on_photoshop_windows.afshort` | **Pixel** + **Liquify** |
+| `affinity_vector_v3_shortcuts_based_on_illustrator_windows.afshort` | **Vector** |
+
+The Windows files are built directly on top of a real Affinity v3.3.0 Windows shortcut
+export: each studio's entry starts from the factory v3 shortcut set and only the mapped
+keys are added/rebound, so every v3 default not mentioned below survives the load.
 
 **macOS** (`.affshortcuts`):
 
@@ -78,11 +82,13 @@ R Color Replacement Brush (PS's Rotate View tool has no equivalent)
 | Alt+Ctrl+A Select All Layers | identical |
 
 ### Panels & app
-**F5 Brushes · F6 Color · F7 Layers · F8 Info · Alt+F9 Macro panel** (PS Actions) ·
 **Ctrl+K Settings** (PS Preferences; Affinity's own Ctrl+, also kept) · **Alt+Shift+Ctrl+K** also opens Settings
 (closest to PS's Keyboard Shortcuts dialog) · **Shift+Tab** show/hide panels (dual with v3's Ctrl+Shift+H) ·
 **Ctrl+H** show/hide pixel selection edges (PS Extras; best available equivalent) ·
 **Alt+Ctrl+;** Lock Guides · F1 Help · Tab Toggle UI · Ctrl+Tab next document.
+
+*(PS's F5 Brushes / F6 Color / F7 Layers / F8 Info / Alt+F9 Actions panel keys could not be mapped:
+Affinity v3 has no shortcut-assignable show/hide commands for those panels on either platform.)*
 
 ### Liquify studio (PS Liquify keys)
 **W Forward Warp** (was P) · **R Reconstruct** ✓ · **E Twirl** (was T) · **S Pucker→Pinch** (was U) ·
@@ -98,7 +104,7 @@ V Selection ✓ · A Direct Selection→Node ✓ · P Pen ✓ · T Type ✓ · N
 G Gradient→Fill tool ✓ · I Eyedropper ✓ · W Blend ✓ (same in both!) · H Hand ✓ · Z Zoom ✓ ·
 **M Rectangle** · **L Ellipse** (U also still cycles shapes) · **Shift+M Shape Builder** ·
 **Shift+W Width tool** → Stroke Width · **E Free Transform** → Point Transform tool (closest; F also kept) ·
-**Shift+O Artboard tool** · **\ Line Segment** → Line tool (see deviations) ·
+**Shift+O Artboard tool** · **\ Line Segment** → *unmapped (no Line tool ID in v3 — see deviations)* ·
 S Shape Builder / O Contour / C Corner / K Knife / R Vector Flood Fill / Y Transparency (v3 defaults kept;
 AI's Scale/Reflect/Scissors/Live Paint/Magic Wand tools have no Affinity equivalents — see below).
 
@@ -110,29 +116,32 @@ AI's Scale/Reflect/Scissors/Live Paint/Magic Wand tools have no Affinity equival
 | **Ctrl+2 Lock · Alt+Ctrl+2 Unlock All** | → Lock / Unlock All (Affinity's own Ctrl+L lock also kept) |
 | **Ctrl+3 Hide · Alt+Ctrl+3 Show All** | → Hide / Show All |
 | **Ctrl+7 / Alt+Ctrl+7 Clipping Mask & release** | → Move Inside / Move Outside |
-| **Ctrl+8 / Alt+Ctrl+8 Compound Path & release** | → Create/Release Compound *(experimental — see below)* |
+| **Ctrl+8 / Alt+Ctrl+8 Compound Path & release** | → Create/Release Compound |
 | **Ctrl+J Join** | → Join Curves when the **Pen or Node tool is active** (Affinity scopes this to those tools; with other tools Ctrl+J remains Duplicate) |
-| **Alt+Ctrl+J Average** | → Average *(experimental)* |
+| **Alt+Ctrl+J Average** | → *unmapped — v3 exposes no Average command* |
 | **Ctrl+D Transform Again** | → Duplicate (Affinity's duplicate is a *power duplicate* that repeats your last transform — same idea) |
 | **Shift+Ctrl+A Deselect** | → Deselect (Ctrl+D was reassigned as above) |
-| **Ctrl+6 Reselect** | → Reselect *(experimental)* |
+| **Ctrl+6 Reselect** | → Reselect Pixels (closest existing v3 command) |
 | **Shift+Ctrl+O Create Outlines** | → Convert to Curves (Ctrl+Enter also kept) |
 | **Shift+Ctrl+E Apply Last Effect** | → Repeat Last Command (closest) |
 | **Alt+Ctrl+; Lock Guides** | → Lock Guides |
 
 ### Type
-**Ctrl+T Character panel ✓ (same key!)** · **Alt+Ctrl+T Paragraph** · **Shift+Ctrl+T Tabs** → Typography panel ·
+**Ctrl+T Character panel ✓ (same key!)** · **Shift+Ctrl+T Tabs** → Typography panel ·
 **Alt+Shift+Ctrl+T OpenType** · align **Shift+Ctrl+L / C / R** · justify **Shift+Ctrl+J** ·
 justify-all **Shift+Ctrl+F** (Affinity's own Ctrl+Alt+L/C/R bindings also kept) ·
 font size **Shift+Ctrl+. / ,** = Affinity's `Ctrl+>` / `Ctrl+<` (same physical keys, already default) ·
 Bold/Italic/Underline keep Affinity's Ctrl+B/I/U (AI has no defaults for these).
 
 ### View & panels
-**Ctrl+Y Outline** ✓ *(experimental command name — v3 already defaults to Ctrl+Y)* ·
+**Ctrl+Y Outline** ✓ *(v3 already defaults to Ctrl+Y)* ·
 Ctrl+; guides ✓ · Ctrl+' grid ✓ · Ctrl+R rulers ✓ · **Ctrl+Alt+0 Fit All** → Zoom to Fit (dual with Ctrl+0) ·
-**F5 Brushes · F6 Color · F7 Layers ✓ (same!) · F8 New Symbol · Ctrl+F8 Info · Ctrl+F10 Stroke ·
-Shift+F5 Graphic Styles → Styles panel · Shift+F8 Transform · Shift+Ctrl+F11 Symbols** ·
-F1 Help ✓.
+**F8 New Symbol** · F1 Help ✓.
+
+*(AI's F5 Brushes / F6 Color / F7 Layers / Ctrl+F8 Info / Ctrl+F10 Stroke / Shift+F5 Graphic Styles /
+Shift+F8 Transform / Shift+Ctrl+F11 Symbols panel keys could not be mapped: Affinity v3 has no
+shortcut-assignable show/hide commands for those panels on either platform. Alt+Ctrl+T Paragraph was
+dropped for the same reason; Ctrl+T Character and Shift+Ctrl+T Typography do exist and are kept.)*
 
 ---
 
@@ -140,8 +149,8 @@ F1 Help ✓.
 
 **Photoshop side**
 - **Ctrl+T / Ctrl+Shift+T / Ctrl+Alt+Shift+T (Free Transform / Again)** — Affinity has no transform *command*;
-  the Move tool always transforms. These keys were left **unassigned** (Affinity's defaults on them were removed
-  so you don't get a surprise panel). No equivalent exists.
+  the Move tool always transforms. No equivalent exists (v3's factory defaults leave these keys unassigned
+  in the Pixel studio anyway).
 - **Shift+Ctrl+J Layer via Cut** — no equivalent (use Ctrl+X then Ctrl+V).
 - **F cycle screen modes** — Affinity on Windows has no full-screen shortcut; F stays on Affinity's
   Frequency-Separation toggle.
@@ -163,36 +172,41 @@ F1 Help ✓.
   deliberately left on v3's studio-switching keys so you don't trap yourself in a studio).
 - **Ctrl+8 conflict** — AI's Make Compound took Ctrl+8; Affinity's "Zoom to actual size" was unbound
   (Ctrl+1/0 still cover zooming).
+- **\ Line Segment** — unmapped: v3 has no separately assignable Line tool (it's a Pen-tool mode),
+  and the guessed tool ID from earlier drafts doesn't exist.
 - **Ctrl+L** — kept as Affinity's Lock (Designer's default) rather than Levels; AI's Ctrl+2 Lock also added.
 
 **Both files**
-- **F5–F8 panel keys shadow v3's studio-switching keys** (F5 Slice, F6 Canva AI, F7 Retouching, F8 Color
-  Grading) *inside* the mapped studio. F2/F3/F4/F9 studio switching is preserved. If you'd rather have the
-  studio keys, delete the panel bindings in Settings → Keyboard Shortcuts.
 - v3's **Ctrl+B Brightness/Contrast** default was sacrificed for PS's Ctrl+B Color Balance (Pixel file only).
 
-## Experimental entries (synthesized command names)
+## Command-name verification (Windows)
 
-These commands exist in Affinity v3 (verified in a real v3 shortcut inventory) but their exact internal
-Windows command names had to be inferred; if one doesn't work, assign it once via the GUI and it'll stick
-(the rest of the file is unaffected): `SwitchToWorkspace0/1/2/7Command` (F2/F3/F4/F9 studio keys),
-`SwitchToDevelopWorkspaceCommand`, `PreviewModeCommand` (Ctrl+Shift+W), and in the Illustrator file
-`CompoundCommand`, `ReleaseCompoundCommand`, `AverageCommand`, `ReselectCommand`, `OutlineViewModeCommand`,
-`AddSymbolCommand`, `ToggleStrokePageVisibilityCommand`, `ToggleSymbolsPageVisibilityCommand`, plus tool
-names `ShapeBuilder`, `Knife`, `StrokeWidth`, `Contour`, `Blend`, `VectorFloodFill`, `ShapeLine`/`Line`.
+Every command and tool ID in the Windows files was checked against the metadata of the installed
+`Serif.Affinity.dll` / `Serif.Interop.Persona.dll` (v3.3.0.4850). Consequences:
+
+- Earlier drafts used wrong synthesized names that v3 does not contain; these were corrected:
+  `ReselectCommand` → `ReselectPixelsCommand`, `PreviewModeCommand` → `RenderPreviewModeCommand`,
+  and the studio-switch keys use the real `SwitchToWorkspaceCommand1–8` (already bound to F2–F9
+  by the factory defaults, so the files simply keep them).
+- Entries dropped because **the command does not exist in Affinity v3 at all**: every per-panel
+  `Toggle*PageVisibilityCommand` except Character/Typography (that kills the F5–F8, Alt+F9, Ctrl+F8,
+  Ctrl+F10, Shift+F5/F8, Shift+Ctrl+F11 panel mappings — v3 manages panels through studios),
+  `AverageCommand` (AI's Alt+Ctrl+J), `CustomiseToolsCommand`, the v2-era
+  `SwitchToPhoto/ExportWorkspaceCommand`, and the guessed `ShapeLine` tool ID (AI's `\` Line Segment
+  key is therefore unmapped; Affinity's Pen tool line mode has no separate shortcut-assignable tool).
 
 ## Compatibility notes
 
-- `.afshort` (Windows) is a ZIP of per-workspace XML using the v1/v2/v3-compatible schema with
-  assembly-qualified command names (`Version=2.5.5.2636` — Affinity ignores the version when loading;
-  v1.8 files load fine in v2, and v3 loads earlier files).
+- `.afshort` (Windows) is a ZIP of per-studio XML files. In Affinity v3 the entries inside the ZIP
+  **must be named by studio GUID** (e.g. `7C4CC2E1-D695-422B-AD3B-326C60971BE7.xml` = Vector,
+  `831AAB2C-659F-4906-A8B1-8BA4544DB274.xml` = Pixel, `63FB3B15-8A29-4FA2-A471-6A0CB8845FAB.xml` =
+  Liquify) and commands are assembly-qualified with `Version=3.3.0.4850`. Files using the v1/v2-era
+  entry names (`VectorWorkspace.xml`, `PhotoWorkspace.xml`, …) and older version strings are
+  **silently ignored** by v3's importer — that is why the first revision of these files did nothing.
 - `.affshortcuts` (Mac) is a binary-plist keyed archive; these were produced by surgically editing a
   genuine v3 export and re-serializing, so format validity is not inferred but inherited.
-- The Windows Photoshop file contains both `PhotoWorkspace.xml` (v2 Photo / possible v3 naming) and
-  `PixelWorkspace.xml` (v3 Pixel Studio naming) with identical content, so it lands whichever name v3 uses.
-- Everything was validated as well-formed with no unintended duplicate key combos (the only shared
-  combos left — e.g. Alt+Shift+V Paste FX vs Vivid Light — are conflicts Affinity ships in its own
-  factory defaults).
+- Everything was validated as well-formed with no unintended duplicate key combos, and every command
+  name verified against the v3 binaries (see above).
 - Source shortcut lists: Adobe's official Photoshop (web + desktop) and Illustrator default-shortcut
   documentation, cross-checked against Affinity v3's official shortcut documentation and real
   exported shortcut files for both platforms.
