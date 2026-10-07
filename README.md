@@ -193,7 +193,8 @@ Every command and tool ID in the Windows files was checked against the metadata 
   Ctrl+F10, Shift+F5/F8, Shift+Ctrl+F11 panel mappings — v3 manages panels through studios),
   `AverageCommand` (AI's Alt+Ctrl+J), `CustomiseToolsCommand`, the v2-era
   `SwitchToPhoto/ExportWorkspaceCommand`, and the guessed `ShapeLine` tool ID (AI's `\` Line Segment
-  key is therefore unmapped; Affinity's Pen tool line mode has no separate shortcut-assignable tool).
+  key is therefore unmapped on Windows; Affinity's Pen tool line mode has no separate
+  shortcut-assignable tool — on Mac it's an *experimental* entry instead, see below).
 
 ## Compatibility notes
 
@@ -217,10 +218,11 @@ Every command and tool ID in the Windows files was checked against the metadata 
 
 Same mapping decisions as Windows, with these platform realities:
 
-- **Panel toggles don't exist on Mac.** Affinity v3 for macOS exposes no shortcut actions for the
-  Brushes/Color/Layers/Info/Stroke/Styles/Transform/Symbols/Macro panels, so F5–F8, Alt+F9, Ctrl+F8/F10,
-  Shift+F5/F8 and Shift+Ctrl+F11 mappings are **Windows-only**. (Mac users toggle panels via the
-  Window menu.) The two panel actions Mac does have — Character `Cmd+T` and Typography `Shift+Cmd+T` —
+- **Panel toggles don't exist in v3 — on either platform.** Affinity v3 exposes no shortcut actions for the
+  Brushes/Color/Layers/Info/Stroke/Styles/Transform/Symbols/Macro panels (verified against the Windows
+  binaries and the Mac export), so the F5–F8, Alt+F9, Ctrl+F8/F10, Shift+F5/F8 and Shift+Ctrl+F11
+  panel mappings exist in **neither** file. (Toggle panels via the Window menu / studio settings.)
+  The two panel actions that do exist — Character `Cmd+T` and Typography `Shift+Cmd+T` —
   already match Illustrator and are kept.
 - **Cmd+2 Lock is unmappable on Mac** (v3 macOS has no lock/unlock-object action), so Cmd+2 keeps its
   factory Zoom 200%. Unlock All *did* map: Opt+Cmd+2. Hide mapped to Cmd+3 (layer-visibility toggle),
@@ -233,10 +235,15 @@ Same mapping decisions as Windows, with these platform realities:
   Opt+Cmd+G Move Inside (PS clipping mask), Shift+Cmd+E Merge Selected was *moved* to Merge Visible
   (PS) in the Pixel file and to Repeat/last-effect (AI) in the Vector file.
 - **Tools:** Liquify studio uses PS's W/E/S/B/O/D keys exactly like the Windows file. Vector studio
-  adds M Rectangle, L Ellipse, Shift+M Shape Builder, Shift+W Width, E Point Transform, plus
-  *experimental* entries for the Artboard (Shift+O), Blend (W) and Line (\) tools — those three tools
-  don't appear in the v3.0.x export these files are based on, so their entries use inferred tool IDs
-  and are inert if the guess is wrong (assign once in Settings to fix).
+  adds M Rectangle, L Ellipse, Shift+M Shape Builder, Shift+W Width, E Point Transform. The internal
+  tool IDs for Rectangle, Ellipse, Shape Builder and Point Transform were cross-checked against the
+  factory export's own `ToolIDTag` values and are **confirmed working**.
+- **Experimental — Mac Vector file only:** the **Artboard (Shift+O), Blend (W) and Line (\)** entries
+  use inferred `ToolIDTag` values that do **not** appear anywhere in the factory export, so they are
+  inert if the guess is wrong. If one doesn't work, assign it once in
+  `Affinity` menu → **Settings** → **Keyboard Shortcuts** (Tools section) and it will stick — the rest
+  of the file is unaffected. Reporting the working assignment back (e.g. via a repo issue) lets the
+  IDs be corrected for everyone.
 - **Deliberate sacrifices (Vector file):** Cmd+B/I/U follow the factory (Brightness-Contrast was
   moved off Cmd+B for Bold; Italic/Underline yield to factory Invert/HSL); Zoom-to-Width lost
   Opt+Cmd+0 to AI's Fit All; studio-switch key F8 is shadowed by New Symbol *inside the Vector
